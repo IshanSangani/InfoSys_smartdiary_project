@@ -29,21 +29,18 @@ def dashboard(request):
     Render the main dashboard.
     The user must be logged in to access.
     """
-    # Get or create user profile
-    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
-    
+    user_profile = UserProfile.objects.filter(user=request.user).first()
     uploaded_images = FoodDiaryEntry.objects.filter(user=request.user).order_by('-timestamp')[:3]
     notifications = Notification.objects.filter(user=request.user).order_by('-created_at')[:5]
-    
     context = {
         'user': request.user,
         'user_profile': user_profile,
         'uploaded_images': uploaded_images,
         'notifications': notifications, 
-        'calorie_goal': user_profile.calorie_goal or 0,  # Provide default value
-        'protein_goal': user_profile.protein_goal or 0,
-        'carbs_goal': user_profile.carbs_goal or 0,
-        'fats_goal': user_profile.fats_goal or 0, 
+        'calorie_goal': user_profile.calorie_goal,
+        'protein_goal': user_profile.protein_goal,
+        'carbs_goal': user_profile.carbs_goal,
+        'fats_goal': user_profile.fats_goal, 
     }
     return render(request, 'nutriwise/dashboard.html', context)
 

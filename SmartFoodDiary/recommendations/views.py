@@ -22,6 +22,9 @@ from xhtml2pdf import pisa
 import plotly.graph_objects as go
 from django.db.models import Sum
 import os
+from io import BytesIO
+from django.http import HttpResponse
+
 
 
 now = timezone.now()
@@ -187,7 +190,8 @@ def meal_recommendations(request):
         )
 
         # Get meal recommendations using a relative path
-        excel_file_path = os.path.join(settings.BASE_DIR, 'recommendations', 'excel', 'food_data.xlsx')
+        excel_file_path = "Anuvaad_INDB_2024.11.xlsx"
+
         try:
             meal_features, meals = load_meal_data_from_excel(excel_file_path)
             recommended_meals = suggest_meals(profile, meal_features, meals)
@@ -245,12 +249,7 @@ def load_meal_data_from_excel(file_path):
         return np.array([]), np.array([])
 
 
-from io import BytesIO
-from django.http import HttpResponse
-from django.template.loader import get_template
-from xhtml2pdf import pisa
-from django.db.models import Sum
-from django.contrib.auth.decorators import login_required
+
 
 @login_required
 def generate_pdf_report(request):

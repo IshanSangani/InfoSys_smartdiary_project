@@ -149,9 +149,43 @@
         .btn:hover {
             background-color: #0056b3;
         }
+        .nutriwise-button {
+    z-index: 100;  
+    position: fixed;
+    top: 100px;  /* Distance from the top */
+    left: 20px;  /* Distance from the left edge */
+    display: inline-block;
+    margin: 20px auto;
+    padding: 25px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nutriwise-button:hover {
+    background-color: #e40707; /* Darker green */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.nutriwise-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
     </style>
 </head>
 <body>
+    <div>
+        <a  href="http://127.0.0.1:8000/nutriwise/" class="nutriwise-button">Go to Nutriwise</a>
+    </div>
+    
 <div class="background">
     <div class="container">
         <div class="row">
@@ -180,7 +214,7 @@
 
             <!-- Consumed Goals Box -->
             <div class="box">
-                <h2>Consumed Goals</h2>
+                <h2>Consumed </h2>
                 <div class="inner-box">
                     <div class="table">
                         <div class="column left">
@@ -201,19 +235,25 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Meal Suggestions Box -->
+        <div >
+            <h2 style="color: #f4f4f4;">Recommended Meals</h2 text-align= "left">
         <div class="meal-suggestions">
+            
+       
+            
             {% if recommended_meals %}
                 <ul style="list-style: none; padding: 0;">
-                    {% for meal in recommended_meals|slice:":3" %}
-                        <li style="margin: 10px 0;">{{ meal }}</li>
+                    {% for meal in recommended_meals|slice:":5" %}
+                        {{ meal }}  ,
                     {% endfor %}
                 </ul>
             {% else %}
                 <p>No meal suggestions available</p>
             {% endif %}
         </div>
+    </div>
 
         <!-- Export Options -->
         <div class="export-options">
