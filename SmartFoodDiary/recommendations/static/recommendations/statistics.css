@@ -232,13 +232,17 @@ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .export-btn {
+  display: inline-block;
   text-decoration: none;
   font-size: 16px;
   color: #fff;
   background-color: #007BFF;
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
 }
 
 .export-btn:hover {
